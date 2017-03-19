@@ -1,0 +1,10 @@
+html,body{
+	padding:0;
+}
+ul,li{
+	list-style: none;
+}
+
+.flex-dev{
+	display: flex;
+}
