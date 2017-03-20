@@ -1,0 +1,10 @@
+body{
+    color:red;
+    background: pink;
+}
+ul li{
+    list-style:none;
+}
+.flex-box{
+    display: flex;
+}

@@ -1,31 +1,36 @@
 var htmlWebpackPlugin = require('html-webpack-plugin');
-var path = requier('path');
+var path = require('path');
+console.log(__dirname);
 module.exports = {
-	context:__dirName,
-	entry:{
-		page01:'./src/script/main.js',
-		page02:['./src/script/main.js','./src/script/a.js']
-	},
-	output:{
-		path:'./dist',
-		filename:'js/[name]-[chunkhash].bundle.js'
+    // context:__dirname,
+    entry: './src/app.js',
+    output: {
+        path: './dist',
+        filename: 'js/[name]-[chunkhash].bundle.js'
 
-	},
-	plugins:[
-		new htmlWebpackPlugin({
-			template:'helloworld.html',
-			inject:'<!--a bg-->'
-		})
-	]，
-	// loader？importLoader  引入时候处理
-	module:{
-		loaders:[{
-			test:/\.css$/,
-			loader:'style-loader!css-loader？importLoader = 1!postcss-loader'
-		}]
-	},
-	postcss:()=>{
-		return [require("autoprefixer")]
-		
-	}
+    },
+    plugins: [
+        new htmlWebpackPlugin({
+            template: 'index.html',
+            filename: 'index.html',
+            inject: 'body'
+        })
+    ],
+    //loader？importLoader  引入时候处理
+    module: {
+        rules:[
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                loader: "babel-loader"
+            },
+            {
+                test: /\.css$/,
+                use: [
+                    { loader: "style-loader" },
+                    { loader: "css-loader" },
+                ],
+            }]
+    }
 }
+;
